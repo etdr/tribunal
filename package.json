@@ -17,6 +17,7 @@
     "koa": "^2.13.1",
     "koa-bodyparser": "^4.3.0",
     "koa-jwt": "^4.0.0",
+    "mailgun-js": "^0.22.0",
     "pg": "^8.5.1",
     "sequelize": "^6.5.0"
   },

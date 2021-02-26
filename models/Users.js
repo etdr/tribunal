@@ -14,7 +14,10 @@ module.exports = db.define('users', {
     type: DataTypes.STRING,
     allowNull: false
   },
-  title: {
-    type: DataTypes.STRING
+  role: {
+    type: DataTypes.STRING,
+    validate: {
+      isIn: ['user', 'mod', 'admin']
+    }
   }
 })

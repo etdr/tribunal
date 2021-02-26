@@ -1,26 +1,24 @@
 const db = require('../db')
 const { DataTypes } = require('sequelize')
 
-module.exports = db.define('posts', {
-  
+module.exports = db.define('tribunes', {
+
   date: {
-    type: DataTypes.DATE,
-    allowNull: false,
-    defaultValue: DataTypes.NOW
+    type: DataTypes.DATEONLY,
+    allowNull: false
   },
-  
   title: {
     type: DataTypes.STRING,
     allowNull: true
   },
-  
-  body: {
-    type: DataTypes.TEXT,
-    allowNull: false
-  },
 
-  emoji: {
-    type: DataTypes.STRING(30),
+  intro: {
+    type: DataTypes.TEXT,
+    allowNull: true
+  },
+  outro: {
+    type: DataTypes.TEXT,
     allowNull: true
   }
+
 })
