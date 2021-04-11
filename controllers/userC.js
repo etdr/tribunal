@@ -10,27 +10,20 @@ const { Users } = require('../models/index')
 
 router.post('/signup', async (ctx) => {
   try {
-    console.log(ctx.request.body)
 
-    const admin = ctx.request.body.user.admin
+    const role = ctx.request.body.user.role
 
     const pwhash = await argon2.hash(ctx.request.body.user.password, { type: argon2.argon2id })
 
     const user = await Users.create({
-      username: ctx.request.body.user.username,
       password: pwhash,
-      firstname: ctx.request.body.user.firstname,
-      lastname: ctx.request.body.user.lastname,
       email: ctx.request.body.user.email,
-      title: ctx.request.body.user.title,
-      description: ctx.request.body.user.description,
-      color: ctx.request.body.user.color,
-      admin
+      role
     })
 
     // console.log('user created');
 
-    const token = jwt.sign({ id: user.id, admin }, process.env.JWT_SECRET, { expiresIn: "21d" })
+    const token = jwt.sign({ id: user.id, admin: role === 'admin' }, process.env.JWT_SECRET, { expiresIn: "21d" })
 
     // console.log('sending response');
 

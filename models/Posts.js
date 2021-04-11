@@ -20,7 +20,7 @@ module.exports = db.define('posts', {
   },
 
   emoji: {
-    type: DataTypes.STRING(30),
+    type: DataTypes.STRING(8),
     allowNull: true
   }
 })

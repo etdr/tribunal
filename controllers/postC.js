@@ -44,16 +44,44 @@ router.get('/:id', async ctx => {
 
 
 
-router.post('/', async ctx => {
+
+
+router.post('/t/:tid', async ctx => {
   try {
+    const post = ctx.request.body.post
+
     const result = await Posts.create({
-      date: ctx.body.post.date,
-      title: ctx.body.post.title,
-      body: ctx.body.post.body,
-      emoji: ctx.body.post.emoji
+      date: post.date,
+      title: post.title,
+      body: post.body,
+      emoji: post.emoji,
+      tribuneId: ctx.params.tid,
+      cohortId: ctx.request.body.cohortId
     })
 
-    // attach to tribunes?
+    ctx.body = result
+  
+  } catch (e) {
+    ctx.status = 500
+    ctx.body = `error: ${e.message}`
+  }
+})
+
+
+
+
+
+
+router.post('/', async ctx => {
+  try {
+    const post = ctx.request.body.post
+
+    const result = await Posts.create({
+      date: post.date,
+      title: post.title,
+      body: post.body,
+      emoji: post.emoji
+    })
 
     ctx.body = result
   
@@ -74,3 +102,7 @@ router.link('/:pid/t/:tid', async ctx => {
 
 
 router.unlink('/:pid/t/:tid')
+
+
+
+module.exports = router

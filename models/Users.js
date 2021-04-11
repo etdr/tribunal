@@ -17,7 +17,7 @@ module.exports = db.define('users', {
   role: {
     type: DataTypes.STRING,
     validate: {
-      isIn: ['user', 'mod', 'admin']
+      isIn: [['user', 'mod', 'admin']]
     }
   }
 })

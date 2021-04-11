@@ -1,30 +1,40 @@
 const Users = require('./Users')
 const Individuals = require('./Individuals')
-const Titles = require('./Titles')
+const Ranks = require('./Ranks')
 const Posts = require('./Posts')
 const Tribunes = require('./Tribunes')
-const Postusages = require('./Postusages')
+// const Postusages = require('./Postusages')
+const Cohorts = require('./Cohorts')
 
 
 Users.hasOne(Individuals)
 Individuals.belongsTo(Users)
 
-Titles.hasMany(Individuals)
-Individuals.belongsTo(Titles)
+Ranks.hasMany(Individuals)
+Individuals.belongsTo(Ranks)
 
-Individuals.hasMany(Posts)
-Posts.belongsTo(Individuals)
+Cohorts.hasMany(Individuals)
+Individuals.belongsTo(Cohorts)
 
-Tribunes.belongsToMany(Posts, { through: Postusages })
-Posts.belongsToMany(Tribunes, { through: Postusages })
+// Individuals.hasMany(Posts)
+// Posts.belongsTo(Individuals)
 
+Tribunes.hasMany(Posts)
+Posts.belongsTo(Tribunes)
+
+// EVENTUALLY:
+// Tribunes.belongsToMany(Posts, { through: Postusages })
+// Posts.belongsToMany(Tribunes, { through: Postusages })
+
+Cohorts.hasMany(Posts)
+Posts.belongsTo(Cohorts)
 
 
 module.exports = {
   Users,
   Individuals,
-  Titles,
+  Ranks,
   Posts,
   Tribunes,
-  Postusages
+  Cohorts
 }
