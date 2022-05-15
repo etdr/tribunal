@@ -13,5 +13,10 @@ module.exports = db.define('cohorts', {
   startDate: {
     type: DataTypes.DATEONLY,
     allowNull: true
+  },
+  archived: {
+    type: DataTypes.BOOLEAN,
+    allowNull: false,
+    defaultValue: false
   }
 })

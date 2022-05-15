@@ -41,7 +41,8 @@ router.post('/signup', async (ctx) => {
 
 router.post('/login', async (ctx) => {
   try {
-    const user = await Users.findOne({ where: { username: ctx.request.body.user.username } })
+
+    const user = await Users.findOne({ where: { email: ctx.request.body.user.email } })
 
     if (user) {
 
@@ -49,7 +50,7 @@ router.post('/login', async (ctx) => {
 
       if (matches) {
       
-        const token = jwt.sign({ id: user.id, admin: user.admin }, process.env.JWT_SECRET, { expiresIn: "21d" })
+        const token = jwt.sign({ id: user.id, admin: user.role === 'admin' }, process.env.JWT_SECRET, { expiresIn: "21d" })
 
         ctx.body = {
           user,

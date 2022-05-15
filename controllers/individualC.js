@@ -120,6 +120,17 @@ router.unlink('/:iid/r', async (ctx) => {
   }
 })
 
+router.delete('/:iid', async (ctx) => {
+  try {
+    ctx.body = await Individuals.destroy({
+      where: { id: ctx.params.iid }
+    })
+  } catch (err) {
+    ctx.status = 500
+    ctx.body = `error: ${err.message}`
+  }
+})
+
 
 
 module.exports = router

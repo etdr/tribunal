@@ -7,6 +7,12 @@ module.exports = db.define('tribunes', {
     type: DataTypes.DATEONLY,
     allowNull: false
   },
+  volume: {
+    type: DataTypes.INTEGER
+  },
+  issue: {
+    type: DataTypes.INTEGER
+  },
   title: {
     type: DataTypes.STRING,
     allowNull: true
